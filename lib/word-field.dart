@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class WordField extends StatelessWidget {
   final _fieldController = TextEditingController();
 
-  void Function(String value) onWordAdded;
+  final void Function(String value) onWordAdded;
 
   WordField({this.onWordAdded});
 

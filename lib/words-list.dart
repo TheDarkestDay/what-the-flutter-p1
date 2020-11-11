@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:what_the_flutter_p1/home-page.dart';
 
 class WordsList extends StatelessWidget {
-  List<Word> words = [];
+  final List<Word> words;
 
-  void Function(String text) onUsageTracked;
+  final void Function(String text) onUsageTracked;
 
   WordsList({this.words, this.onUsageTracked});
 
