@@ -15,6 +15,10 @@ class HomePage extends StatefulWidget {
   State<StatefulWidget> createState() => _HomePageState();
 }
 
+/**
+ * Now let's style our app!
+ * 
+ */
 class _HomePageState extends State<HomePage> {
   final List<Word> words = [];
 
