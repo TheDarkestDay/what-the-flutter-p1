@@ -41,15 +41,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(16),
       child: Column(
         children: [
-          WordField(
-            onWordAdded: addWord,
+          Container(
+            margin: EdgeInsets.only(bottom: 8),
+            child: WordField(
+              onWordAdded: addWord,
+            ),
           ),
-          WordsList(
-            words: words,
-            onUsageTracked: trackWordUsage,
-          )
+          Expanded(
+            child: WordsList(
+              words: words,
+              onUsageTracked: trackWordUsage,
+            ),
+          ),
         ],
       ),
     );

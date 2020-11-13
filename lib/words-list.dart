@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:what_the_flutter_p1/home-page.dart';
+import 'package:what_the_flutter_p1/word-card.dart';
+import 'package:what_the_flutter_p1/words-grid.dart';
 
 class WordsList extends StatelessWidget {
   final List<Word> words;
@@ -8,25 +10,33 @@ class WordsList extends StatelessWidget {
 
   WordsList({this.words, this.onUsageTracked});
 
-  handleTrackUsageButtonClick(String text) {
+  handleWordCardTap(String text) {
     onUsageTracked(text);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: words
-          .map((word) => Row(
-                children: [
-                  Text(word.text),
-                  Text(word.usageCount.toString()),
-                  RaisedButton(
-                    onPressed: () => handleTrackUsageButtonClick(word.text),
-                    child: Icon(Icons.plus_one),
-                  )
-                ],
-              ))
-          .toList(),
-    );
+    return WordsGrid(
+        children: words
+            .map(
+              (word) => WordCard(
+                  onTap: () => handleWordCardTap(word.text),
+                  children: [
+                    Text(
+                      word.text,
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                    Text(
+                      word.usageCount.toString(),
+                      style: TextStyle(
+                        fontSize: 32,
+                      ),
+                    ),
+                    Text('time(s) used'),
+                  ]),
+            )
+            .toList());
   }
 }

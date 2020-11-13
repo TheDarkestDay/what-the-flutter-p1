@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:what_the_flutter_p1/outlined-text-field.dart';
+import 'package:what_the_flutter_p1/rounded-button.dart';
 
 class WordField extends StatelessWidget {
   final _fieldController = TextEditingController();
@@ -17,16 +19,14 @@ class WordField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(
-          child: TextField(
-            controller: _fieldController,
-          ),
-          width: 200,
-        ),
-        RaisedButton(
+        Expanded(
+            child: OutlinedTextField(
+          controller: _fieldController,
+        )),
+        RoundedButton(
           onPressed: handleAddWordButtonClick,
           child: Icon(Icons.add),
-        )
+        ),
       ],
     );
   }
