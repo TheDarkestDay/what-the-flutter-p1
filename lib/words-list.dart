@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:what_the_flutter_p1/home-page.dart';
 import 'package:what_the_flutter_p1/word-card.dart';
 import 'package:what_the_flutter_p1/words-grid.dart';
+
+import 'word.dart';
 
 class WordsList extends StatelessWidget {
   final List<Word> words;
