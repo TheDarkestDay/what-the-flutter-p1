@@ -7,12 +7,12 @@ import 'word.dart';
 class WordsList extends StatelessWidget {
   final List<Word> words;
 
-  final void Function(String text) onUsageTracked;
+  final void Function(Word word) onUsageTracked;
 
   WordsList({this.words, this.onUsageTracked});
 
-  handleWordCardTap(String text) {
-    onUsageTracked(text);
+  handleWordCardTap(Word word) {
+    onUsageTracked(word);
   }
 
   @override
@@ -20,23 +20,22 @@ class WordsList extends StatelessWidget {
     return WordsGrid(
         children: words
             .map(
-              (word) => WordCard(
-                  onTap: () => handleWordCardTap(word.text),
-                  children: [
-                    Text(
-                      word.text,
-                      style: TextStyle(
-                        fontSize: 24,
-                      ),
-                    ),
-                    Text(
-                      word.usageCount.toString(),
-                      style: TextStyle(
-                        fontSize: 32,
-                      ),
-                    ),
-                    Text('time(s) used'),
-                  ]),
+              (word) =>
+                  WordCard(onTap: () => handleWordCardTap(word), children: [
+                Text(
+                  word.text,
+                  style: TextStyle(
+                    fontSize: 24,
+                  ),
+                ),
+                Text(
+                  word.usageCount.toString(),
+                  style: TextStyle(
+                    fontSize: 32,
+                  ),
+                ),
+                Text('time(s) used'),
+              ]),
             )
             .toList());
   }

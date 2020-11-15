@@ -4,4 +4,8 @@ class Word {
   int usageCount;
 
   Word({this.text, this.usageCount = 0});
+
+  trackUsage() {
+    usageCount++;
+  }
 }

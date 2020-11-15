@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:what_the_flutter_p1/dictionary-page.dart';
 import 'package:what_the_flutter_p1/words-for-today-page.dart';
+import 'package:what_the_flutter_p1/words-provider.dart';
 
 void main() {
   runApp(App());
@@ -17,7 +19,12 @@ class AppStateWrapper extends StatelessWidget {
      * Define your providers and inject them into widgets tree here
      * 
      */
-    return child;
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => WordsProvider()),
+      ],
+      child: child,
+    );
   }
 }
 

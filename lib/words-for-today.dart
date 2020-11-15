@@ -1,36 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:what_the_flutter_p1/words-list.dart';
+import 'package:what_the_flutter_p1/words-provider.dart';
 
 import 'word.dart';
 
-class WordsForToday extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _WordsForTodayState();
-}
-
-class _WordsForTodayState extends State<WordsForToday> {
-  final List<Word> words = [
-    Word(text: 'taciturn'),
-    Word(text: 'peril'),
-    Word(text: 'abandon'),
-  ];
-
-  trackWordUsage(String wordText) {
-    setState(() {
-      Word wordToTrack = words.firstWhere((word) => word.text == wordText);
-
-      wordToTrack.usageCount += 1;
-    });
+class WordsForToday extends StatelessWidget {
+  trackWordUsage(BuildContext context, Word word) {
+    Provider.of<WordsProvider>(context, listen: false).trackWordUsage(word);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
-      child: WordsList(
-        words: words,
-        onUsageTracked: trackWordUsage,
-      ),
+      child: Consumer<WordsProvider>(builder: (context, model, value) {
+        return WordsList(
+          words: model.getWords(),
+          onUsageTracked: (word) => trackWordUsage(context, word),
+        );
+      }),
     );
   }
 }

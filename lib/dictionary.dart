@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:what_the_flutter_p1/word-field.dart';
 import 'package:what_the_flutter_p1/word.dart';
+import 'package:what_the_flutter_p1/words-provider.dart';
 
-class Dictionary extends StatefulWidget {
-  @override
-  _DictionaryState createState() => _DictionaryState();
-}
-
-class _DictionaryState extends State<Dictionary> {
+class Dictionary extends StatelessWidget {
   final List<Word> words = [];
 
-  handleWordAdded(String newWordText) {
-    setState(() {
-      final newWord = Word(text: newWordText);
-
-      words.add(newWord);
-    });
+  handleWordAdded(BuildContext context, String newWordText) {
+    Provider.of<WordsProvider>(context, listen: false).addNewWord(newWordText);
   }
 
   @override
@@ -27,19 +20,23 @@ class _DictionaryState extends State<Dictionary> {
           Padding(
             padding: EdgeInsets.all(8),
             child: WordField(
-              onWordAdded: handleWordAdded,
+              onWordAdded: (newWordText) =>
+                  handleWordAdded(context, newWordText),
             ),
           ),
           Expanded(
-              child: ListView(
-            children: words
-                .map((word) => Card(
-                      child: ListTile(
-                        title: Text(word.text),
-                      ),
-                    ))
-                .toList(),
-          ))
+              child: Consumer<WordsProvider>(builder: (context, model, value) {
+            return ListView(
+              children: model
+                  .getWords()
+                  .map((word) => Card(
+                        child: ListTile(
+                          title: Text(word.text),
+                        ),
+                      ))
+                  .toList(),
+            );
+          })),
         ],
       ),
     );
