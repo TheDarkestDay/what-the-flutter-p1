@@ -18,6 +18,10 @@ class HomePage extends StatefulWidget {
 /**
  * Now let's style our app!
  * 
+ * Here goes the reference material list:
+ * 
+ * 1. Guide for building layouts in Flutter - https://flutter.dev/docs/development/ui/layout
+ * 2. Available widgets catalog - https://flutter.dev/docs/development/ui/widgets
  */
 class _HomePageState extends State<HomePage> {
   final List<Word> words = [];
