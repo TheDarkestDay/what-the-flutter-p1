@@ -39,7 +39,7 @@ class _WordFieldState extends State<WordField> {
           ),
           width: 200,
         ),
-        RaisedButton(
+        ElevatedButton(
           onPressed: handleAddWordButtonClick,
           child: Icon(Icons.add),
         )
