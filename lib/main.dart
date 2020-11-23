@@ -16,6 +16,7 @@ class App extends StatelessWidget {
      */
     return MaterialApp(
       title: 'Flutter Demo',
+      initialRoute: '/',
       routes: {
         '/': (context) => WordsForTodayPage(),
         '/dictionary': (context) => DictionaryPage(),
