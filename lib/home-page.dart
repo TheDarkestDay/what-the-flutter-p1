@@ -16,8 +16,14 @@ class HomePage extends StatefulWidget {
 }
 
 /**
- * Now let's style our app!
+ * The time has come to split our components apart.
  * 
+ * The only guid you might require for this exercise is here:
+ * https://flutter.dev/docs/cookbook/navigation/named-routes
+ * 
+ * However, if you feel that named routes are not your thing, you can 
+ * accomplish the same via regular Widget-based navigation:
+ * https://flutter.dev/docs/cookbook/navigation/navigation-basics
  */
 class _HomePageState extends State<HomePage> {
   final List<Word> words = [];
