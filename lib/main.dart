@@ -16,6 +16,8 @@ class AppStateWrapper extends StatelessWidget {
     /**
      * Define your providers and inject them into widgets tree here
      * 
+     * If you struggle feel free to consult this guide from Flutter documentation:
+     * https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple
      */
     return child;
   }
@@ -28,6 +30,7 @@ class App extends StatelessWidget {
     return AppStateWrapper(
       child: MaterialApp(
         title: 'Flutter Demo',
+        initialRoute: '/',
         routes: {
           '/': (context) => WordsForTodayPage(),
           '/dictionary': (context) => DictionaryPage(),
