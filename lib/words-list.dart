@@ -20,7 +20,7 @@ class WordsList extends StatelessWidget {
                 children: [
                   Text(word.text),
                   Text(word.usageCount.toString()),
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: () => handleTrackUsageButtonClick(word.text),
                     child: Icon(Icons.plus_one),
                   )
