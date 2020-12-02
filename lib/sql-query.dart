@@ -1,0 +1,3 @@
+enum SqlQuery {
+  createWordsTable,
+}
