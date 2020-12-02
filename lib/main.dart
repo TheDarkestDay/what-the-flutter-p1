@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:what_the_flutter_p1/dictionary-page.dart';
+import 'package:what_the_flutter_p1/local-db-words-storage.dart';
+import 'package:what_the_flutter_p1/setup-database.dart';
 import 'package:what_the_flutter_p1/words-for-today-page.dart';
 import 'package:what_the_flutter_p1/words-provider.dart';
+import 'package:what_the_flutter_p1/words-storage.dart';
 
 void main() {
   runApp(App());
@@ -15,13 +18,19 @@ class AppStateWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /**
-     * Define your providers and inject them into widgets tree here
-     * 
-     */
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => WordsProvider()),
+        FutureProvider<WordsStorage>(
+          create: (context) async {
+            final db = await setupDatabase();
+
+            return LocalDbWordsStorage(db: db);
+          },
+        ),
+        ChangeNotifierProxyProvider<WordsStorage, WordsProvider>(
+            create: (context) => WordsProvider(),
+            update: (context, wordsStorage, wordsProvider) =>
+                wordsProvider.setStorage(wordsStorage)),
       ],
       child: child,
     );
