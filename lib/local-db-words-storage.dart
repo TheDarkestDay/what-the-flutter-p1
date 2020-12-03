@@ -25,13 +25,12 @@ class LocalDbWordsStorage extends WordsStorage {
   Future<List<Word>> getWords() async {
     final List<Map<String, dynamic>> wordRecords = await db.query('words');
 
-    return List.generate(wordRecords.length, (index) {
-      final record = wordRecords[index];
+    return wordRecords.map((record) {
       return Word(
           id: record['id'],
           text: record['text'],
           usageCount: record['usageCount']);
-    });
+    }).toList();
   }
 
   @override
