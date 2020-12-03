@@ -19,7 +19,7 @@ class Word {
     };
   }
 
-  factory Word.fromJson(Map<String, dynamic> json) {
+  factory Word.fromMap(Map<String, dynamic> json) {
     return Word(
         id: json['id'], text: json['text'], usageCount: json['usageCount']);
   }
